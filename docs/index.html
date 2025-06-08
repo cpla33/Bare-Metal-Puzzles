@@ -23,7 +23,7 @@
   <pre><code id="code-block" class="language-c"></code></pre>
 
   <script>
-    fetch("../src/main.c") // укажи путь к файлу
+    fetch("main.c") // укажи путь к файлу
       .then(response => response.text())
       .then(text => {
         const codeEl = document.getElementById("code-block");
