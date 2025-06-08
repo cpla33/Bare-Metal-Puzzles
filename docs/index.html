@@ -10,6 +10,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
 
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ffffff;
+    }
+
+    .page-container {
+      width: 60%;
+      margin: 0 auto;
+      padding: 2em 0;
+    }
+
     .code-container {
       position: relative;
       margin-top: 1em;
@@ -39,19 +52,28 @@
     .copy-btn:active {
       background-color: #0056b3;
     }
+
+    @media (max-width: 768px) {
+      .page-container {
+        width: 90%;
+        padding: 1em;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <h2>main.c</h2>
-  <div class="code-container">
-    <button class="copy-btn" onclick="copyCode()">Copy</button>
-    <pre><code id="code-block" class="language-c"></code></pre>
+  <div class="page-container">
+    <h2>main.c</h2>
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode()">Copy</button>
+      <pre><code id="code-block" class="language-c"></code></pre>
+    </div>
   </div>
 
   <script>
     // Подгружаем код
-    fetch("main.c") // <-- Укажи правильный путь!
+    fetch("main.c") // <-- Укажи правильный путь при необходимости
       .then(response => response.text())
       .then(text => {
         const codeEl = document.getElementById("code-block");
