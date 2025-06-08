@@ -30,12 +30,14 @@
     }
 
     pre {
-      background: #f0f0f0;
-      padding: 1em;
-      border: 1px solid #ccc;  /* тонкая однотонная рамка */
-      border-radius: 4px;      /* минимальное скругление */
+      background: none;            /* убрал фон */
+      border-radius: 0;           /* убрал скругления */
       overflow-x: auto;
       margin: 0;
+      padding-left: 1em;          /* отступ слева */
+      border-left: 4px solid #dfe2e5;  /* вертикальная полоса */
+      font-family: monospace;
+      position: relative;
     }
 
     .copy-btn {
