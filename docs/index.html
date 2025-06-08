@@ -2,37 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Load & Highlight Code</title>
+  <title>Load & Highlight Code with Copy</title>
 
-  <!-- Подключаем highlight.js -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <!-- Highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
 
   <style>
+    .code-container {
+      position: relative;
+      margin-top: 1em;
+    }
+
     pre {
       background: #f0f0f0;
       padding: 1em;
       border-radius: 8px;
       overflow-x: auto;
+      margin: 0;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 4px 8px;
+      font-size: 0.9em;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: white;
+    }
+
+    .copy-btn:active {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
+
   <h2>main.c</h2>
-  <pre><code id="code-block" class="language-c"></code></pre>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode()">Copy</button>
+    <pre><code id="code-block" class="language-c"></code></pre>
+  </div>
 
   <script>
-    fetch("main.c") // укажи путь к файлу
+    // Подгружаем код
+    fetch("main.c") // <-- Укажи правильный путь!
       .then(response => response.text())
       .then(text => {
         const codeEl = document.getElementById("code-block");
         codeEl.textContent = text;
-        hljs.highlightElement(codeEl); // подсветка
+        hljs.highlightElement(codeEl);
       })
       .catch(err => {
         document.getElementById("code-block").textContent = "Error loading file.";
       });
+
+    // Копирование в буфер обмена
+    function copyCode() {
+      const code = document.getElementById("code-block").textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector(".copy-btn");
+        btn.textContent = "Copied!";
+        setTimeout(() => (btn.textContent = "Copy"), 2000);
+      });
+    }
   </script>
+
 </body>
 </html>
