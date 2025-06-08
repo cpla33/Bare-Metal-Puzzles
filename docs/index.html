@@ -1,31 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Code Viewer</title>
+  <meta charset="UTF-8" />
+  <title>Load & Highlight Code</title>
+
+  <!-- Подключаем highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
+
   <style>
     pre {
       background: #f0f0f0;
       padding: 1em;
-      border-radius: 5px;
+      border-radius: 8px;
       overflow-x: auto;
     }
   </style>
 </head>
 <body>
   <h2>main.c</h2>
-  <pre id="code-block"></pre>
+  <pre><code id="code-block" class="language-c"></code></pre>
 
   <script>
-    fetch("main.c")
+    fetch("../src/main.c") // укажи путь к файлу
       .then(response => response.text())
       .then(text => {
-        document.getElementById("code-block").textContent = text;
+        const codeEl = document.getElementById("code-block");
+        codeEl.textContent = text;
+        hljs.highlightElement(codeEl); // подсветка
       })
-      .catch(error => {
+      .catch(err => {
         document.getElementById("code-block").textContent = "Error loading file.";
       });
   </script>
 </body>
 </html>
-
