@@ -84,7 +84,7 @@
 
   <script>
     // Загрузка файлов
-    fetch("/test1/main.c")
+    fetch("test1/main.c")
       .then(response => response.text())
       .then(text => {
         const codeC = document.getElementById("code-block-c");
@@ -92,7 +92,7 @@
         hljs.highlightElement(codeC);
       });
 
-    fetch("/test1/cmd.sh")
+    fetch("test1/cmd.sh")
       .then(response => response.text())
       .then(text => {
         const codeBash = document.getElementById("code-block-bash");
