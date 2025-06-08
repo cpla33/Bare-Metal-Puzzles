@@ -31,11 +31,22 @@ A growing number of simple yet powerful low-level sketches.
 >}
 
 
- 
 **b). Compile it to create executable for `x86` architecture:**
 
-`gcc test1.c -o test1`
+> `gcc test1.c -o test1`
+
+Compile it for the Raspberri Pi (running ordinary 32-bit OS):
+
+> `// sudo apt install gcc-arm-linux-gnueabihf`
+> `arm-linux-gnueabihf-gcc test1.c -o test1-rpi`
+
+Compile it for the Raspberri Pi (running ordinary 32-bit OS):
+
+> `// sudo apt install gcc-aarch64-linux-gnu`
+> `aarch64-linux-gnu-gcc test1.c -o test1-rpi64`
+
 
 **c). Launch executable:**
 
-`./test1`
+> `// chmod +x test1-rpi`
+> `./test1`
