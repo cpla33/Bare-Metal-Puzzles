@@ -1,4 +1,4 @@
-# theme: minima 
-remote_theme: poole/lanyon
+theme: minima
+# remote_theme: poole/lanyon
 title: Bare Metal Puzzles
 description: The description in the yaml-file
