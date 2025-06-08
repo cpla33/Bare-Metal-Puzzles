@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Load & Highlight Code with Copy</title>
+  <title>Multiple Code Blocks with Copy</title>
 
   <!-- Highlight.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
 
   <style>
     body {
@@ -25,7 +26,7 @@
 
     .code-container {
       position: relative;
-      margin-top: 1em;
+      margin-top: 1.5em;
     }
 
     pre {
@@ -65,30 +66,45 @@
 
   <div class="page-container">
     <h2>main.c</h2>
+    <p>Ниже показан пример простого C-приложения, вызывающего системную команду:</p>
+
     <div class="code-container">
-      <button class="copy-btn" onclick="copyCode()">Copy</button>
-      <pre><code id="code-block" class="language-c"></code></pre>
+      <button class="copy-btn" onclick="copyCode('code-block-c')">Copy</button>
+      <pre><code id="code-block-c" class="language-c"></code></pre>
+    </div>
+
+    <h2>cmd.bash</h2>
+    <p>Следующий фрагмент демонстрирует Bash-скрипт, запускающий это приложение:</p>
+
+    <div class="code-container">
+      <button class="copy-btn" onclick="copyCode('code-block-bash')">Copy</button>
+      <pre><code id="code-block-bash" class="language-bash"></code></pre>
     </div>
   </div>
 
   <script>
-    // Подгружаем код
-    fetch("main.c") // <-- Укажи правильный путь при необходимости
+    // Загрузка файлов
+    fetch("main.c")
       .then(response => response.text())
       .then(text => {
-        const codeEl = document.getElementById("code-block");
-        codeEl.textContent = text;
-        hljs.highlightElement(codeEl);
-      })
-      .catch(err => {
-        document.getElementById("code-block").textContent = "Error loading file.";
+        const codeC = document.getElementById("code-block-c");
+        codeC.textContent = text;
+        hljs.highlightElement(codeC);
       });
 
-    // Копирование в буфер обмена
-    function copyCode() {
-      const code = document.getElementById("code-block").textContent;
+    fetch("cmd.sh")
+      .then(response => response.text())
+      .then(text => {
+        const codeBash = document.getElementById("code-block-bash");
+        codeBash.textContent = text;
+        hljs.highlightElement(codeBash);
+      });
+
+    // Копирование кода по id
+    function copyCode(id) {
+      const code = document.getElementById(id).textContent;
       navigator.clipboard.writeText(code).then(() => {
-        const btn = document.querySelector(".copy-btn");
+        const btn = document.querySelector(`button[onclick="copyCode('${id}')"]`);
         btn.textContent = "Copied!";
         setTimeout(() => (btn.textContent = "Copy"), 2000);
       });
