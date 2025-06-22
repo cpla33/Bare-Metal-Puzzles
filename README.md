@@ -34,7 +34,9 @@ A growing number of simple yet powerful low-level sketches.
 
 **b). Compile it to create executable for `x86` architecture:**
 
-> `gcc test1.c -o test1`
+```c
+gcc test1.c -o test1
+
 
 Compile it for the Raspberri Pi (running ordinary 32-bit OS):
 
