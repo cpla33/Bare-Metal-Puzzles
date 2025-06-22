@@ -38,6 +38,10 @@ A growing number of simple yet powerful low-level sketches.
 gcc test1.c -o test1
 ```
 
+**```bash
+gcc test1.c -o test1
+```**
+
 Compile it for the Raspberri Pi (running ordinary 32-bit OS):
 
 > `// sudo apt install gcc-arm-linux-gnueabihf`
