@@ -38,7 +38,7 @@ A growing number of simple yet powerful low-level sketches.
 gcc test1.c -o test1
 ```
 
-```bash
+```sh
 gcc test1.c -o test1
 ```
 
