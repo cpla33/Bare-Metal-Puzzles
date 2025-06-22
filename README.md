@@ -42,6 +42,10 @@ gcc test1.c -o test1
 gcc test1.c -o test1
 ```
 
+```python
+print(f"hello {name}")
+```
+
 Compile it for the Raspberri Pi (running ordinary 32-bit OS):
 
 > `// sudo apt install gcc-arm-linux-gnueabihf`
