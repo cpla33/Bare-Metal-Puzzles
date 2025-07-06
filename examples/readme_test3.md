@@ -18,7 +18,8 @@ In Linux, the bitness of the system typically matches the bitness of the kernel,
 **1. Create the `test3.c` file as below:**
 
 ```sh
-touch test3.c
+touch test3.c;
+gedit test3.c
 ```
 
 
@@ -30,7 +31,8 @@ touch test3.c
 int main() {
     FILE *fp;
     char buffer[256];
-    char arch[128] = {0}; // initializes all elements of the arch array to zero (i.e., null characters), because strings in C rely on the null terminator ('\0') to mark the end
+    char arch[128] = {0}; // initializes all elements of the arch array to zero (i.e., null characters),
+    // because strings in C rely on the null terminator ('\0') to mark the end
 
     printf("Detecting CPU architecture...\n\n");
 
@@ -70,30 +72,52 @@ int main() {
     return 0;
 }
 ```
+-----
 
-**2a. Compile it to create executable (for any architecture where the `gcc` compiler is installed):**
+## Compilation:
+
+**Compile it to create executable for the current OS where the `gcc` compiler is installed (64-bit Intel/AMD):**
 
 ```sh
 gcc test3.c -o test3
 ```
+-----
+## Cross-compilation:
 
-**2b. Cross-compilation for the Raspberri Pi (32-bit, Bullseye or Bookworm):**
+**Raspberry Pi (ARM64, 32-bit OS: Bullseye or Bookworm):**
 
 ```sh
 # sudo apt install gcc-arm-linux-gnueabihf;
-arm-linux-gnueabihf-gcc test2.c -o test2-rpi
+arm-linux-gnueabihf-gcc test3.c -o test3-rpi32
 ```
 
-**2c. Cross-compilation for the Raspberri Pi (64-bit, Bookworm):**
+**Raspberry Pi (ARM, 64-bit OS: Bookworm):**
 
 ```sh
 # // sudo apt install gcc-aarch64-linux-gnu;
-aarch64-linux-gnu-gcc test2.c -o test2-rpi64
+aarch64-linux-gnu-gcc test3.c -o test3-rpi64
 ```
 
-**3. Launch executable:**
+**BeagleBone Black (32-bit ARMv7):**
 
 ```sh
-chmod 755 test3-rpi;
-./test1
+# // sudo apt install gcc-arm-linux-gnueabihf;
+arm-linux-gnueabihf-gcc test3.c -o test3-armv7
+```
+
+**Allwinner D1 (64-bit RISC-V):**
+
+Assuming to get an ELF-file.
+
+```sh
+# // sudo apt install gcc-riscv64-linux-gnu;
+riscv64-linux-gnu-gcc test3.c -o test3-riscv
+```
+-----
+
+## Launching executable:
+
+```sh
+chmod u=rwx,g=rx,o=rx test3;
+./test3
 ```

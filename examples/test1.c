@@ -8,7 +8,7 @@ int main() {
     int result = system("lsb_release -a|grep Codename");
 
     if (result == -1) {
-        perror("system");
+        perror("system"); // a standard C library function used to print a human-readable error message to stderr based on the current value of the global variable errno
         return 1;
     }
 

@@ -38,14 +38,14 @@ gcc test1.c -o test1
 
 ```sh
 # sudo apt install gcc-arm-linux-gnueabihf;
-arm-linux-gnueabihf-gcc test2.c -o test2-rpi
+arm-linux-gnueabihf-gcc test1.c -o test1-rpi
 ```
 
 **2c. Cross-compilation for the Raspberri Pi (64-bit, Bookworm):**
 
 ```sh
 # // sudo apt install gcc-aarch64-linux-gnu;
-aarch64-linux-gnu-gcc test2.c -o test2-rpi64
+aarch64-linux-gnu-gcc test1.c -o test1-rpi64
 ```
 
 **3. Launch executable:**
