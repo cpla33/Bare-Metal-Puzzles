@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main() {
-    printf("Requesting 'history'...\n\n");
+    printf("Requesting lsb release...\n\n");
 
     // requesting the name of the linux distro installed
     int result = system("lsb_release -a|grep Codename");

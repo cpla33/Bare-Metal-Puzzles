@@ -1,5 +1,7 @@
 ## An executable returning the OS-call response
 
+This executable is able to launch the OS request hiddenly, returning the response only. It could be helpful for the compicated requests including subcommands like `grep` and so forth.
+
 [go back](../README.md)
 
 ------
@@ -12,13 +14,13 @@
 #include <stdlib.h>
 
 int main() {
-    printf("Requesting 'history'...\n\n");
+    printf("Requesting lsb release...\n\n");
 
     // requesting the name of the linux distro installed
     int result = system("lsb_release -a|grep Codename");
 
     if (result == -1) {
-        perror("system");
+        perror("system"); // a standard C library function used to print a human-readable error message to stderr based on the current value of the global variable errno
         return 1;
     }
 
@@ -32,23 +34,23 @@ int main() {
 gcc test1.c -o test1
 ```
 
-**3. Cross-compilation for the Raspberri Pi:
+**2b. Cross-compilation for the Raspberri Pi (32-bit, Bullseye or Bookworm):**
 
 ```sh
 # sudo apt install gcc-arm-linux-gnueabihf;
-arm-linux-gnueabihf-gcc test1.c -o test1-rpi
+arm-linux-gnueabihf-gcc test2.c -o test2-rpi
 ```
 
-or:
+**2c. Cross-compilation for the Raspberri Pi (64-bit, Bookworm):**
 
 ```sh
 # // sudo apt install gcc-aarch64-linux-gnu;
-aarch64-linux-gnu-gcc test1.c -o test1-rpi64
+aarch64-linux-gnu-gcc test2.c -o test2-rpi64
 ```
 
-**c). Launch executable:**
+**3. Launch executable:**
 
 ```sh
-chmod +x test1-rpi;
+chmod +x test1;
 ./test1
 ```
