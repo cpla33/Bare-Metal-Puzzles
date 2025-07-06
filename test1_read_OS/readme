@@ -1,4 +1,0 @@
-gcc run_ifconfig.c -o run_ifconfig
-
-./run_ifconfig
-
